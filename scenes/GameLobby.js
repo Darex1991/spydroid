@@ -38,7 +38,7 @@ export default class GameLobby extends Component {
       this.setState({ players: this.state.players });
       if (this.allPlayersReady(this.state.players)) {
         this.setState({ everyoneReady: true });
-        alert('Everyone ready!', ToastAndroid.SHORT);
+        alert('Everyone ready!');
       }
     });
 
