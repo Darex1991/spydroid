@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     marginHorizontal: 50
   }
-})
+});
 
 const colors = {
   primary: '#2095f2',

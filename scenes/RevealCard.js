@@ -16,8 +16,8 @@ export default class RevealCard extends Component {
   }
 
   componentWillMount() {
-    this.setState({ cardContent: this.cardContent.bind(this)() })
-    this.socket = this.props.socket
+    this.setState({ cardContent: this.cardContent.bind(this)() });
+    this.socket = this.props.socket;
 
     this.socket.on('gameHasEnded', (data) => {
       let lobbyRoute = {
@@ -25,8 +25,8 @@ export default class RevealCard extends Component {
         game: this.props.game,
         user: this.props.user,
         socket: this.socket
-      }
-      this.socket.on('gameHasEnded', () => true)
+      };
+      this.socket.on('gameHasEnded', () => true);
       Alert.alert(
         'Info',
         'The game has ended.',
@@ -55,22 +55,22 @@ export default class RevealCard extends Component {
   }
 
   revealCard() {
-    let updatesLeft = 3
+    let updatesLeft = 3;
     this.setState({
       btnDisabled: true,
       revealUpdatesLeft: updatesLeft,
       buttonText: updatesLeft + '...',
       cardRevealed: true
-    })
+    });
 
-    let intervalId = setInterval(this.revealRoutine.bind(this), 1000)
+    let intervalId = setInterval(this.revealRoutine.bind(this), 1000);
     this.setState({ intervalId: intervalId })
   }
 
   revealRoutine() {
-    let updatesLeft = this.state.revealUpdatesLeft - 1
+    let updatesLeft = this.state.revealUpdatesLeft - 1;
     if (updatesLeft < 1) {
-      this.setState({ btnDisabled: false, buttonText: 'Reveal card', cardRevealed: false })
+      this.setState({ btnDisabled: false, buttonText: 'Reveal card', cardRevealed: false });
       clearInterval(this.state.intervalId)
     } else {
       this.setState({ revealUpdatesLeft: updatesLeft, buttonText: updatesLeft + '...' })
@@ -103,8 +103,8 @@ export default class RevealCard extends Component {
           this.socket.emit('playerLeftGame', {
             token: this.props.game.token,
             playerId: this.props.user.id
-          })
-          this.socket.disable()
+          });
+          this.socket.disable();
           this.props.nav.resetTo({ id: 'index' })
         } },
       ],
@@ -124,6 +124,3 @@ export default class RevealCard extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-})

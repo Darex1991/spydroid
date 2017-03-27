@@ -19,4 +19,4 @@ const styles = StyleSheet.create({
     margin: 25,
     marginVertical: 30
   }
-})
+});

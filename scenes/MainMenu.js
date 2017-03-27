@@ -5,7 +5,7 @@ import SocketIO from 'react-native-socketio';
 import Title from '../components/Title';
 import CenterButton from '../components/CenterButton';
 
-var Env = require('../env.js')
+import Env from '../env.js';
 
 export default class MainScene extends Component {
   constructor(props) {
@@ -21,7 +21,7 @@ export default class MainScene extends Component {
   }
 
   render() {
-    titles = this.state.titles
+    let titles = this.state.titles;
     return (
       <View>
         <Title text='Spydroid.' />
@@ -35,28 +35,24 @@ export default class MainScene extends Component {
 
   goToRoute = (newRoute) => {
     this.props.nav.resetTo({ id: newRoute });
-  }
+  };
 
   displayCredits = () => {
     Alert.alert(
       'Credits',
       "Application by Marek Polakowski\nBased on Spyfall game"
     )
-  }
+  };
 
   checkServer = () => {
-    this.setState({ pingPending: true })
+    this.setState({ pingPending: true });
     fetch(Env.SERVER_URI + '/api/status/')
     .then((response) => response.json())
     .then((response) => {
-      this.setState({ pingPending: false })
+      this.setState({ pingPending: false });
       if (response === true) {
-        alert('Server is up!', ToastAndroid.LONG)
+        Alert.alert('Server is up!', ToastAndroid.LONG)
       }
     })
   }
 }
-
-const styles = StyleSheet.create({
-
-})

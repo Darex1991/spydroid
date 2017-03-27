@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Button, Text } from 'react-native';
+import { StyleSheet, View, Button } from 'react-native';
 
 export default class BottomNav extends Component {
   render() {
@@ -25,4 +25,4 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textDecorationLine: 'underline'
   }
-})
+});
