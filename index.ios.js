@@ -1,53 +1,44 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import { AppRegistry, Navigator, Text } from 'react-native';
 
-export default class spydroid extends Component {
+import MainMenu from './scenes/MainMenu';
+import NewGame from './scenes/NewGame';
+import GameLobby from './scenes/GameLobby';
+import JoinGame from './scenes/JoinGame';
+import RevealCard from './scenes/RevealCard';
+
+class spydroid extends Component {
+  constructor() {
+    super();
+    this.routes = [
+      { id: 'index' }
+    ]
+  }
+
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
-    );
+      <Navigator
+        initialRoute={this.routes[0]}
+        initialRouteStack={this.routes}
+        renderScene={this.navigatorRenderScene.bind(this)}
+      />
+    )
+  }
+
+  navigatorRenderScene(route, nav) {
+    switch (route.id) {
+      case 'index':
+        return (<MainMenu nav={nav} />)
+      case 'newGame':
+        return (<NewGame nav={nav} />)
+      case 'joinGame':
+        return (<JoinGame nav={nav} />)
+      case 'gameLobby':
+        return (<GameLobby nav={nav} socket={route.socket} game={route.game} user={route.user} />)
+      case 'revealCard':
+        return (<RevealCard nav={nav} socket={route.socket} game={route.game} user={route.user} />)
+    }
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
 
 AppRegistry.registerComponent('spydroid', () => spydroid);
