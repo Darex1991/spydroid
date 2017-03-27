@@ -8,8 +8,8 @@ import CenterButton from '../components/CenterButton'
 import CustomInput from '../components/CustomInput'
 import LobbyPlayersList from '../components/LobbyPlayersList'
 
-var Env = require('../env.js')
-var _ = require('lodash')
+import Env from '../env.js'
+import _ from 'lodash'
 
 export default class GameLobby extends Component {
   constructor(props) {
