@@ -24,7 +24,7 @@ $ npm run server
 > [nodemon] to restart at any time, enter `rs`
 > [nodemon] watching: *.*
 > [nodemon] starting `node server`
-> listening on *:3000
+> listening on *:3001
 > Hello, this is the server speaking. How may I assist?
 ```
 

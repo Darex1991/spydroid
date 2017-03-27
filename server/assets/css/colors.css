@@ -1,0 +1,23 @@
+.bg-black {
+  background-color: #263238;
+}
+
+.bg-white {
+  background-color: #ffffff;
+}
+
+.bg-primary {
+  background-color: #263238;
+}
+
+.color-white {
+  color: #ECEFF1;
+}
+
+.color-almost-white {
+  color: #CFD8DC;
+}
+
+.color-light-gray {
+  color: #A2AFB6;
+}
