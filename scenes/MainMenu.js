@@ -51,7 +51,7 @@ export default class MainScene extends Component {
     .then((response) => {
       this.setState({ pingPending: false })
       if (response === true) {
-        ToastAndroid.show('Server is up!', ToastAndroid.LONG)
+        alert('Server is up!', ToastAndroid.LONG)
       }
     })
   }

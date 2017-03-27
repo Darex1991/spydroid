@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Alert, ToastAndroid } from 'react-native';
+import { View, Text, StyleSheet, Alert } from 'react-native';
 import SocketIO from 'react-native-socketio';
 
 import Title from '../components/Title'
@@ -38,7 +38,7 @@ export default class GameLobby extends Component {
       this.setState({ players: this.state.players })
       if (this.allPlayersReady(this.state.players)) {
         this.setState({ everyoneReady: true })
-        ToastAndroid.show('Everyone ready!', ToastAndroid.SHORT)
+        alert('Everyone ready!', ToastAndroid.SHORT);
       }
     })
 
