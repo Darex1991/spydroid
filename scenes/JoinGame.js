@@ -5,7 +5,7 @@ import Title from '../components/Title'
 import CustomInput from '../components/CustomInput'
 import CenterButton from '../components/CenterButton'
 
-var Env = require('../env.js')
+import Env from '../env.js'
 
 export default class JoinGame extends Component {
   constructor(props) {
@@ -39,7 +39,7 @@ export default class JoinGame extends Component {
         token: this.state.token,
         playerName: this.state.playerName
       })
-    }
+    };
 
     fetch(Env.SERVER_URI + '/api/connections', obj)
     .then((response) => response.json())
@@ -47,13 +47,9 @@ export default class JoinGame extends Component {
       if (!response.error) {
         this.props.nav.resetTo({ id: 'gameLobby', game: response.game, user: response.user })
       } else {
-        Alert.alert('Error', response.error)
+        alert('Error', response.error);
         this.setState({ btnDisabled: false })
       }
     })
   }
 }
-
-const styles = StyleSheet.create({
-
-})

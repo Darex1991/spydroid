@@ -27,4 +27,4 @@ const styles = StyleSheet.create({
     backgroundColor: '#ddd',
     borderRadius: 2
   }
-})
+});

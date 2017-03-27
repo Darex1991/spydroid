@@ -6,7 +6,7 @@ import CenterButton from '../components/CenterButton'
 import CustomInput from '../components/CustomInput'
 import ModalInfo from '../components/ModalInfo'
 
-var Env = require('../env.js')
+import Env from '../env.js'
 
 export default class PlayersSetup extends Component {
   constructor(props) {
@@ -47,7 +47,7 @@ export default class PlayersSetup extends Component {
       body: JSON.stringify({
         creatorName: this.state.playerName
       })
-    }
+    };
 
     fetch(Env.SERVER_URI + '/api/games/', obj)
     .then((response) => response.json())

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Alert, ToastAndroid } from 'react-native';
+import { View, Text, StyleSheet, Alert } from 'react-native';
 import SocketIO from 'react-native-socketio';
 
 import Title from '../components/Title'
@@ -21,30 +21,30 @@ export default class GameLobby extends Component {
   }
 
   componentWillMount() {
-    this.socket = this.props.socket || this.createLobbySocket()
+    this.socket = this.props.socket || this.createLobbySocket();
 
     this.socket.on('gameHasStarted', (data) => {
       this.gameHasStarted(data[0])
-    })
+    });
 
     this.socket.on('playersInGame', (data) => {
       this.setState({ players: data[0].players });
-    })
+    });
 
     this.socket.on('playerReady', (data) => {
-      let player = this.state.players.find((player) => { return player.id == data[0].playerId })
-      player.ready = true
+      let player = this.state.players.find((player) => { return player.id == data[0].playerId });
+      player.ready = true;
       if (player.id == this.props.user.id) { this.setState({ ready: true }) }
-      this.setState({ players: this.state.players })
+      this.setState({ players: this.state.players });
       if (this.allPlayersReady(this.state.players)) {
-        this.setState({ everyoneReady: true })
-        ToastAndroid.show('Everyone ready!', ToastAndroid.SHORT)
+        this.setState({ everyoneReady: true });
+        alert('Everyone ready!', ToastAndroid.SHORT);
       }
-    })
+    });
 
     this.socket.on('gameHasDied', (data) => {
-      this.socket.disable()
-      this.props.nav.resetTo({ id: 'index' })
+      this.socket.disable();
+      this.props.nav.resetTo({ id: 'index' });
       Alert.alert(
         'Info',
         'The game has been deleted.',
@@ -53,7 +53,7 @@ export default class GameLobby extends Component {
         ],
         { cancelable: false }
       )
-    })
+    });
 
     if (!this.props.socket) {
       this.socket.emit('playerJoinedGame', {
@@ -114,8 +114,8 @@ export default class GameLobby extends Component {
           this.socket.emit('playerLeftLobby', {
             token: this.props.game.token,
             playerId: this.props.user.id
-          })
-          this.socket.disable()
+          });
+          this.socket.disable();
           this.props.nav.resetTo({ id: 'index' })
         } },
       ],
@@ -149,25 +149,22 @@ export default class GameLobby extends Component {
       isSpy: data.isSpy,
       token: this.props.game.token,
       adminToken: this.props.game.adminToken
-    }
+    };
     this.props.nav.resetTo({ id: 'revealCard', socket: this.socket, game: game, user: this.props.user });
   }
 
   createLobbySocket() {
     let socket = new SocketIO(Env.SERVER_URI);
     socket.connect();
-    socket.disable = this._disableSocket.bind(socket)
+    socket.disable = this._disableSocket.bind(socket);
     return socket;
   }
 
   _disableSocket() {
-    this.disconnect()
-    this.on('gameHasStarted', () => true)
-    this.on('playersInGame', () => true)
-    this.on('playerReady', () => true)
+    this.disconnect();
+    this.on('gameHasStarted', () => true);
+    this.on('playersInGame', () => true);
+    this.on('playerReady', () => true);
     this.on('gameHasDied', () => true)
   }
 }
-
-const styles = StyleSheet.create({
-})

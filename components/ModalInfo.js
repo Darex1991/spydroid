@@ -37,4 +37,4 @@ const styles = StyleSheet.create({
   text: {
     textAlign: 'center'
   }
-})
+});
