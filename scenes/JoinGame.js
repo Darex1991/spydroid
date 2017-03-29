@@ -50,6 +50,8 @@ export default class JoinGame extends Component {
         alert('Error', response.error);
         this.setState({ btnDisabled: false })
       }
-    })
+    }).catch(function (err) {
+      return err;
+    });
   }
 }

@@ -17,7 +17,7 @@
   "dependencies": {
     "lodash": "2.4.2",
     "react": "15.4.2",
-    "react-native": "0.39.2",
+    "react-native": "^0.42.3",
     "react-native-extensible-stylesheet": "0.0.3",
     "react-native-side-menu": "^0.20.1",
     "react-native-socketio": "^0.3.0"

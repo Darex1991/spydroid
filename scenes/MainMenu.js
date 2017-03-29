@@ -53,6 +53,8 @@ export default class MainScene extends Component {
       if (response === true) {
         alert('Server is up!')
       }
-    })
+    }).catch(function (err) {
+      return err;
+    });
   }
 }

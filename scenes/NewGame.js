@@ -53,6 +53,9 @@ export default class PlayersSetup extends Component {
     .then((response) => response.json())
     .then((response) => {
       this.props.nav.resetTo({ id: 'gameLobby', game: response.game, user: response.user })
-    })
+    }).catch(function (err) {
+      console.log(err);
+      return err;
+    });
   }
 }
